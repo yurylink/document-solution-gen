@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.awt.*;
 
-@Component
 public class ExcellReportConstants {
 
     public static final XSSFColor GREEN_ADIQ = new XSSFColor(new Color(0,222,178));

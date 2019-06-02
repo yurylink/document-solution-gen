@@ -1,6 +1,6 @@
-package com.yurylink.documentsolution.creator;
+package com.yurylink.documentsolution.builder;
 
-import br.com.fourward.data.export.Utils.AdiqExcellReportConstants;
+import com.yurylink.documentsolution.Utils.ExcellReportConstants;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Font;
@@ -307,11 +307,11 @@ public class ExcelReportBuilder {
         font.setBold(true);
         font.setBoldweight(Font.BOLDWEIGHT_BOLD);
         font.setFontHeight(12);
-        font.setColor(AdiqExcellReportConstants.WHITE_COLOR);
+        font.setColor(ExcellReportConstants.WHITE_COLOR);
 
         style.setFont(font);
         style.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-        style.setFillForegroundColor(AdiqExcellReportConstants.DARK_GREY);
+        style.setFillForegroundColor(ExcellReportConstants.DARK_GREY);
         return style;
     }
 
@@ -353,7 +353,7 @@ public class ExcelReportBuilder {
 
         titleCellStyle.setFont(titleFont);
         titleCellStyle.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-        titleCellStyle.setFillForegroundColor(AdiqExcellReportConstants.SOFT_GREY);
+        titleCellStyle.setFillForegroundColor(ExcellReportConstants.SOFT_GREY);
         return titleCellStyle;
     }
 
@@ -375,7 +375,7 @@ public class ExcelReportBuilder {
 
         subTitleStyle.setFont(titleFont);
         subTitleStyle.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-        subTitleStyle.setFillForegroundColor(AdiqExcellReportConstants.SOFT_GREY);
+        subTitleStyle.setFillForegroundColor(ExcellReportConstants.SOFT_GREY);
         return subTitleStyle;
     }
 
