@@ -1,6 +1,5 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-}
+include 'document-file'
+include 'document-microservice'
+//include 'd'
+
 rootProject.name = 'document-solution'

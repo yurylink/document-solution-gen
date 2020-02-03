@@ -1,0 +1,4 @@
+dependencies {
+    compile group: 'org.beanio', name: 'beanio', version: '2.1.0'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+}

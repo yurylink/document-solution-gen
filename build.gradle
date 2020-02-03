@@ -1,25 +1,72 @@
-plugins {
-    id 'org.springframework.boot' version '2.1.5.RELEASE'
-    id 'java'
+buildscript {
+    ext {
+        springBootVersion = '2.1.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:0.5.0.RELEASE")
+    }
 }
 
+
+apply plugin: 'jacoco'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+apply plugin: 'eclipse'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.yurylink'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+//sourceCompatibility = '1.8'
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compile project(':document-microservice')
+    compile project(':document-file')
+}
 
-    compile group: 'org.apache.poi', name: 'poi', version: '3.9'
-    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
-    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13'
+
+def javaProjects() {
+    subprojects.findAll { new File(it.projectDir, 'src').directory }
+}
+
+allprojects{
+
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    sourceCompatibility = '1.8'
+    group = 'com.yurylink'
+    version = '0.0.1'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+}
+
+configure(javaProjects()) {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                artifact(file("$rootDir/gradle.properties"))
+            }
+        }
+    }
 }
